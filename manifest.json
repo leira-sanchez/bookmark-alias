@@ -1,0 +1,21 @@
+{
+    "name": "Bookmark Alias",
+    "version": "1.0",
+    "description": "Shortcuts!",
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
+    },
+    "permissions": [
+        "declarativeContent",
+        "tabs",
+        "storage",
+        "activeTab"
+    ],
+    "page_action": {
+        "default_popup": "popup.html"
+    },
+    "manifest_version": 2
+}
