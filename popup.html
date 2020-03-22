@@ -1,18 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <style>
-      button {
-        height: 30px;
-        width: 30px;
-        outline: none;
-      }
+        .settings {
+            display: flex;
+            flex-direction: row;
+            align-content: center;
+        }
+
+        input {
+            padding: 5px;
+            font-size: 12px;
+            width: 150px;
+            height: 20px;
+        }
+
+        button {
+            height: 30px;
+            width: 70px;
+            background: none;
+            /* This removes the default background */
+            color: #313131;
+            border: 1px solid #313131;
+            border-radius: 50px;
+            /* This gives our button rounded edges */
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        form {
+            padding-top: 20px;
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <h1>Bookmark Alias</h1>
-        <label for="currentURL">URL</label>
-        <input name="currentURL" type="text" placeholder="currentURL"/>
-        <input placeholder="shortcut" />
-  </body>
+    <div class="settings">
+        <form id="form" >
+            <label for="currentURL">URL</label>
+            <input id="originalURL" name="currentURL" type="text" placeholder="currentURL" />
+            <label for="shortcut">Shortcut</label>
+            <input id="shortcut" name="shortcut" placeholder="shortcut" type="text" />
+            <button id="submit-btn" type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="background.js"></script>
+    <script src="data.json"></script>
+    <script src="index.js"></script>
+</body>
+
 </html>

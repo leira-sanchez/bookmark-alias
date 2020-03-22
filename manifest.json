@@ -2,6 +2,9 @@
     "name": "Bookmark Alias",
     "version": "1.0",
     "description": "Shortcuts!",
+    "omnibox": {
+        "keyword": "ba"
+    },
     "background": {
         "scripts": [
             "background.js"
@@ -17,5 +20,9 @@
     "page_action": {
         "default_popup": "popup.html"
     },
+    "content_scripts": [{
+        "matches": ["*://*/"],
+        "js": ["index.js"]
+    }],
     "manifest_version": 2
 }
