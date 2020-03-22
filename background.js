@@ -40,8 +40,9 @@ chrome.omnibox.onInputEntered.addListener(
     function (text) {
         console.log('inputEntered: ' + text);
         chrome.storage.sync.get(['shortcuts'], function (result) {
-            console.log('Value currently is ' + result.shortcuts[text]);
-            newURL = result.shortcuts[text];
+            console.log('result: ', result);
+            console.log('Value currently is ' + result.shortcuts.shortcuts[text]);
+            newURL = result.shortcuts.shortcuts[text];
             console.log('mjm: ', newURL);
             chrome.tabs.update({ url: newURL });
         });
