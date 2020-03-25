@@ -39,17 +39,18 @@ chrome.omnibox.onInputChanged.addListener(
 chrome.omnibox.onInputEntered.addListener(
     function (text) {
         console.log('inputEntered: ' + text);
-        chrome.storage.sync.get(['shortcuts'], function (result) {
+        chrome.storage.sync.get('shortcuts', function (result) {
+            //arreglar esto para q funcone con el nuevo data structure
             console.log('result: ', result);
-            console.log('Value currently is ' + result.shortcuts.shortcuts[text]);
-            newURL = result.shortcuts.shortcuts[text];
+            console.log('Value currently is ' + result.shortcuts[text]);
+            newURL = result.shortcuts[text];
             console.log('mjm: ', newURL);
             chrome.tabs.update({ url: newURL });
         });
     });
 
     //see everything stored
-    chrome.storage.sync.get(null, function (data) { console.info(data) });
+    chrome.storage.sync.get(null, function (data) { console.info('in storage: ', data) });
 
     //remove a single entry
     // chrome.storage.sync.remove('shortcuts', function () { console.log('removed')});

@@ -1,55 +1,37 @@
-// alert('hello, world');
-
-var button = document.getElementById('submit-btn');
-console.log('button: ', button);
-button.addEventListener('click', submit);
-
-var originalURL = document.getElementById('originalURL').value;
-console.log('originalURL2: ', originalURL);
-var data = {
-    "dev": "http://dev.to",
-    "fem": "http://frontendmasters.com",
-    "tw": "http://twitter.com"
-}
-
+// newShortcut - {shortcut: url}
 function submit() {
     console.log('in the submit');
-    var originalURL = document.getElementById('originalURL').value;
-    console.log('originalURL2: ', originalURL);
-
-    var shortcut = document.getElementById('shortcut').value;
-    console.log('shortcut2: ', shortcut);
-    setData(originalURL, shortcut);
-}
-
-function setData(originalURL, shortcut ) {
-    console.log('set originalURL: ', originalURL);
-    console.log('set shorcut: ', shortcut);
-    chrome.storage.sync.get('shortcuts', function (data) {
-        if(data) {
-            console.log('old data: ', data["shortcuts"]);
-            for(let i=0; i< data.length; i++) {
-                console.log('props: ', data[i]);
+    var url = document.getElementById('originalURL').value;
+    var shortcut = document.getElementById('shorcut').value;
+    chrome.storage.sync.get({ 'shortcuts': [] }, result => {
+        console.log('result: ', result);
+        console.log('in the get');
+        var temp = result.shortcuts;
+        temp.push({ [shortcut]: url });
+        chrome.storage.sync.set({ 'shortcuts': temp }, function () {
+            console.log('in the set');
+            if (chrome.runtime.error) {
+                console.log('Runtime error.');
             }
-        }
-        data["shortcuts"][shortcut] = originalURL;
-        console.log('the new shortcut: ', data);
-        chrome.storage.sync.set({ "shortcuts": data }, function () {
-            console.log('Your shortcuts are: ' + shortcut + '. For ' + originalURL);
-        })
-
+        });
     });
 }
 
-
+function handleClearAll() {
+    chrome.storage.sync.remove('shortcuts', function () { console.log('cleared')});
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('document loaded');
     var form = document.getElementById('form');
     form.addEventListener('submit', function (e) {
-        e.preventDefault()
+        e.preventDefault();
         console.log('added to form');
     })
-})
 
-chrome.storage.sync.set({ shortcuts: { "google": "http://google.com" }, function(data) { console.log(data) } });
+    var clearAll = document.getElementById("clear-all");
+    clearAll.addEventListener('handleClearAll', function(e) {
+        e.preventDefault();
+        console.log('clearing sync');
+    })
+})

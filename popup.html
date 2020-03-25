@@ -2,53 +2,40 @@
 <html>
 
 <head>
-    <style>
-        .settings {
-            display: flex;
-            flex-direction: row;
-            align-content: center;
-        }
-
-        input {
-            padding: 5px;
-            font-size: 12px;
-            width: 150px;
-            height: 20px;
-        }
-
-        button {
-            height: 30px;
-            width: 70px;
-            background: none;
-            /* This removes the default background */
-            color: #313131;
-            border: 1px solid #313131;
-            border-radius: 50px;
-            /* This gives our button rounded edges */
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        form {
-            padding-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <h1>Bookmark Alias</h1>
     <div class="settings">
-        <form id="form" >
-            <label for="currentURL">URL</label>
-            <input id="originalURL" name="currentURL" type="text" placeholder="currentURL" />
+        <form id="form">
+            <label for="url">URL</label>
+            <input id="originalURL" name="url" type="text" placeholder="http://example.com" />
+
             <label for="shortcut">Shortcut</label>
-            <input id="shortcut" name="shortcut" placeholder="shortcut" type="text" />
-            <button id="submit-btn" type="submit">Submit</button>
+            <input id="shortcut" name="shortcut" placeholder="ex" type="text" />
+
+            <input id="submit-btn" type="submit" name="submit" value="Submit">
         </form>
     </div>
+
+    <button id="more" type="text">
+        <span class="material-icons">
+            add
+        </span>
+        <div id="tooltip">
+            <button id="clear-all" type="submit">Clear All Shortcuts</button>
+        </div>
+    </button>
+
+
+    <!-- <button class="mdc-fab" aria-label="Add">
+        <div class="mdc-fab__ripple"></div>
+        <span class="mdc-fab__icon material-icons">favorite</span>
+    </button> -->
     <script src="background.js"></script>
-    <script src="data.json"></script>
-    <script src="index.js"></script>
+    <script src="indexv1.js"></script>
 </body>
 
 </html>
