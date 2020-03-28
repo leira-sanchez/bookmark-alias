@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="author" content="Leira Sánchez">
+    <meta name="keywords" content="bookmarks, shortcuts, alias, url, shortener">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <img src='./media/icon-md.png' />
+    <h1>Bookmark Alias</h1>
+    <div class="settings">
+        <form id="form">
+            <label for="url">URL</label>
+            <input id="url" name="url" type="text" placeholder="http://example.com" />
+
+            <label for="shortcut">Shortcut</label>
+            <input id="shortcut" name="shortcut" placeholder="ex" type="text" />
+
+            <input id="submit-btn" type="submit" name="submit" value="Submit">
+            <div id="status-alert">
+            </div>
+        </form>
+    </div>
+
+    <button id="clear-all" type="submit" title="Delete all your shortcuts permanently!">
+        <span class="material-icons">
+            delete
+        </span>
+    </button>
+    <div id="cleared-alert"></div>
+    
+
+    <script src="background.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
